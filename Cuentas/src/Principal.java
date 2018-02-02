@@ -34,7 +34,6 @@ public class Principal {
 		int i;
 		int menu = -1;
 		Banco cuentas[] = new Banco[10];
-		inicializar(cuentas);
 		do {
 			if (Banco.getContador()==1) {
 				System.out.println("1: Crear una cuenta");
@@ -44,19 +43,27 @@ public class Principal {
 				System.out.println("1: Crear una cuenta");
 				System.out.println("2: Ingresar en una cuenta");
 				System.out.println("3: Retirar de una cuenta");
-				System.out.println("4: Crear mas cuentas");
+				System.out.println("4: Fusionar cuentas");
 				System.out.println("5: consultar saldo");
+				System.out.println("6: cancelar cuenta");
+				System.out.println("7: crear cuentas para prueba");
 				System.out.println("0: Salir");
 			}
 		menu = teclado.nextInt();
 		switch (menu) {
 		case 1:
-				if (Banco.getContador() >= (int) 0.8*cuentas.length) {
-					cuentas = Arrays.copyOf(cuentas,(int)(cuentas.length*1.2));
+				if (cuentas[Banco.getContador()-1] == null) {
+					nombre = Leer.pedirCadena("introduce el nombre de cliente");
+					saldo = Leer.pedirDecimal("introduce saldo");
+					cuentas[Banco.getContador()-1] = new Banco(saldo, nombre);
 					}
-				nombre = Leer.pedirCadena("Introduce un nombre");
-				saldo = Leer.pedirDecimal("introduzca saldo");
-				cuentas[Banco.getContador()-1] = new Banco(saldo, nombre);	
+				else if (cuentas[cuentas.length-1] != null ) {
+					cuentas = Arrays.copyOf(cuentas, cuentas.length+10);
+				}
+				else {
+					System.out.println("esa cuenta ya esta creada");
+				}
+			
 		break;
 		
 			/** Si no quieres usar for como sabes donde le toca en el vector 
@@ -75,11 +82,34 @@ public class Principal {
 			cuentas[i].retiraEfectivo(cantidad);
 			break;
 		case 4:
-			inicializar(cuentas);
+			i=Leer.pedirEntero("introduzca el numero de la cuenta a fusionar");
+			int i2= Leer.pedirEntero("introduce una segunda cuenta a fusionar");
+			if (cuentas[i-1].fusion(cuentas[i2-1]) != null) {
+				System.out.println("las cuentas no se pueden fusionar");
+			} 
+			else {
+			Leer.mensaje("cuentas fusionadas");
+			Leer.mensaje(cuentas[i].fusion(cuentas[i2]).toString());
+			}
+			
 			break;
 		case 5:
 			i = Leer.pedirEntero("introduzca el numero de cuenta a visualizar saldo");
 			Leer.mensaje(cuentas[i-1].visualizar());
+			break;
+		case 6:
+			
+			break;
+		case 7:
+			if (cuentas.length*0.5 < Banco.getContador()) {
+				cuentas = Arrays.copyOf(cuentas,cuentas.length + 10);
+				System.out.println(cuentas.length);
+			}
+			cuentas [Banco.getContador()-1] = new Banco(100, "javier");
+			cuentas [Banco.getContador()-1] = new Banco(200, "juan");
+			cuentas [Banco.getContador()-1] = new Banco(300, "sergio");
+			cuentas [Banco.getContador()-1] = new Banco(400, "Asier");
+			System.out.println(Banco.getContador());
 			break;
 		case 0:
 			teclado.close();
@@ -92,12 +122,7 @@ public class Principal {
 
 			
 		}
-	private static void inicializar (Banco cuentas []){
-		cuentas [Banco.getContador()-1] = new Banco(500, "chabier");
-		cuentas [Banco.getContador()-1] = new Banco(400, "juan");
-		cuentas [Banco.getContador()-1] = new Banco(300, "sergio");
-		cuentas [Banco.getContador()-1] = new Banco(200, "ada");
-	}
+		
 
 	}
 

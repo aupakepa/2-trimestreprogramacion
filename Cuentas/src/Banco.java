@@ -3,13 +3,7 @@ public class Banco {
 	private double saldo;
 	private String nombre;
 	private static Integer contador = 1;
-	public static Integer getCuentasActivas() {
-		return cuentasActivas;
-	}
-	public static void setCuentasActivas(Integer cuentasActivas) {
-		Banco.cuentasActivas = cuentasActivas;
-	}
-	private static Integer cuentasActivas = 0;
+	private static Integer activas = 0;
 	public String getNumCuenta() {
 		return numCuenta;
 	}
@@ -43,7 +37,7 @@ public class Banco {
 		this.numCuenta = nombre;
 		this.nombre = nombre;
 		contador++;
-		cuentasActivas++;
+		activas++;
 		}
 	public void ingresaEfectivo(double cantidad){
 		this.saldo = this.saldo + cantidad;
@@ -64,29 +58,24 @@ public class Banco {
 		visual = "Numero de Cuenta "+numCuenta+" saldo "+saldo;
 		return visual;
 	}
-	public void cerrarCuenta(){
-		this.nombre= this.nombre.concat("cerrada");
-		cuentasActivas--;
+	public void cancelar (){
 		this.saldo=0;
+		nombre = "CERRADA".concat(nombre);
+		activas--;
 	}
-	public Banco fusionCuentas(Banco cuenta2){
-	double nuevoSaldo;
-	Banco cuenta = null;
-	String name;
-	if (this.nombre.equals(cuenta2.nombre)) {
-		cuenta=null;
-	}
-	else if (this.numCuenta.equals(cuenta2.numCuenta)) {
-		cuenta=null;
-	}
-	else {
-		nuevoSaldo = this.saldo + cuenta2.getSaldo();
-		name = this.nombre;
-		cuenta = new Banco(nuevoSaldo,name);
-		this.cerrarCuenta();
-		cuenta2.cerrarCuenta();
-	}
-	return cuenta;
+	public Banco fusion(Banco cuenta2){
+		double saldo;
+		Banco cuenta;
+		if (!this.numCuenta.equals(cuenta2.getNumCuenta()) && this.nombre.equals(cuenta2.getNombre())) {
+		saldo = this.saldo + cuenta2.getSaldo();
+		cuenta = new Banco(saldo, this.nombre);
+		this.cancelar();
+		cuenta2.cancelar();
+		return cuenta;
+		}
+		else {
+		return null;
+		}
 	}
 }
 
