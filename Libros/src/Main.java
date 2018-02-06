@@ -54,8 +54,8 @@ public class Main {
 			System.out.println("3- Modificar autor");
 			System.out.println("4- Listado de libros");
 			System.out.println("5- Listado de autores");
-			System.out.println("6- Crear Varios Libros");
-			System.out.println("7- Crear Varios Autores");
+			System.out.println("6- Crear Varios Libros y Autores");
+			System.out.println("7- Introducir Autor");
 			System.out.println("0- Salir");
 			menu = Leer.pedirEntero("introduzca una opcion de menu");
 			switch (menu) {
@@ -71,16 +71,22 @@ public class Main {
 				}
 				break;
 			case 2:
-				String cadena = Leer.pedirCadena("Busca un libro");
-				for (int i = 0; (i < libros.length) && (libros[i] != null); i++) {
-					if (libros[i].getTitulo().indexOf(cadena) != -1) {
-					Leer.mensaje("hemos encontrado tu libro");
-					Leer.mensaje(libros[i].toString());
-					Leer.mensaje("modifica el libro");
-					libros[i] = introducirLibros();
-					Leer.mensaje(libros[i].toString());
+				do {
+					Leer.mensaje("1.buscar Libro");
+					Leer.mensaje("10. Salir");
+					menu=Leer.pedirEntero("introduzca opcion 1 o 10");
+					switch (menu) {
+					case 1:
+						buscarlibro(libros);
+						break;
+					case 10:
+						Leer.mensaje("Fin de la busqueda");
+					default:
+						break;
 					}
-				}
+					
+				} while (menu!=10);
+				
 				break;
 			case 3:
 				
@@ -89,12 +95,11 @@ public class Main {
 					Leer.mensaje(Arrays.toString(libros));
 				break;
 			case 5:
-				for (int j = 0; j < autor.length; j++) {
-					Leer.mensaje(Arrays.toString(libros[j].getAutor()));	
-				}
+				Leer.mensaje(Arrays.toString(autor));
 				break;
 			case 6:
-				libros = variosLibros();
+				variosAutores(autor);
+				variosLibros(autor, libros);
 				break;
 			case 0:
 
@@ -111,6 +116,19 @@ public class Main {
 
 	}
 
+	public static void buscarlibro(Libro[] libros) {
+		String cadena = Leer.pedirCadena("Busca un libro");
+		for (int i = 0; (i < libros.length) && (libros[i] != null); i++) {
+			if (libros[i].getTitulo().indexOf(cadena) != -1) {
+			Leer.mensaje("hemos encontrado tu libro");
+			Leer.mensaje(libros[i].toString());
+			Leer.mensaje("modifica el libro");
+			libros[i] = introducirLibros();
+			Leer.mensaje(libros[i].toString());
+			}
+		}
+	}
+
 	/**
 	 * @param autor
 	 * @param libros
@@ -121,16 +139,39 @@ public class Main {
 		Autor autor[] = new Autor[5];
 		titulo = Leer.pedirCadena("introduce el titulo");
 		precio = Leer.pedirDecimal("introduce el precio");
-		autor = IntroducirAutores();
+		
+		int numero = Leer.pedirEntero("cuantos autores tiene el libro");
+		if (condition) {
+			
+		}
 		Libro libro = new Libro(titulo, precio, autor);
 		return libro;
 	}
-
+	public
+	public static Autor[] introducirAutor(Autor autor[]){
+		String nombre;
+		String email;
+		char sexo;
+		Fecha fechaNacimiento;
+		boolean resultado = false;
+		for (int i = 0; (resultado==true || i < autor.length ); i++) {
+			if (autor[i]==null) {
+				nombre = Leer.pedirCadena("Introduce el nombre del autor");
+				email = Leer.pedirCadena("email");
+				sexo = Leer.pedirCadena("introduce F o M").charAt(0);
+				fechaNacimiento = IntroducirFecha();
+				autor[i]= new Autor(nombre, email, sexo, fechaNacimiento);
+				resultado = true;
+			}
+			
+		}
+		return autor;
+	}
 	/**
 	 * @param autor
 	 * @param numeroAutores
 	 */
-	public static Autor[] IntroducirAutores() {
+	/**public static Autor[] IntroducirAutores() {
 		String nombre;
 		String email;
 		char sexo;
@@ -145,7 +186,7 @@ public class Main {
 			autor[j] = new Autor(nombre, email, sexo, fechaNacimiento);
 		}
 		return autor;
-	}
+	}*/
 
 	/**
 	 * @return
@@ -170,20 +211,17 @@ public class Main {
 		return autor;
 	}
 
-	public static Libro[] variosLibros(Autor autor1 [], Libro libros[]) {
-		Autor autor[] = new Autor [5];
-		autor [0]= autor1[0];
-		Libro libro[] = new Libro[10];
-		libro[0] = new Libro("La insoportable levedad del ser", 20, autor [0]);
-		libro[1] = new Libro("El señor de los anillos", 20, autor[1]);
-		libro[2] = new Libro("El perfume", 20, autor[2]);
-		libro[3] = new Libro("Trainspotting", 20, autor[4]);
-		libro[4] = new Libro("El tercer gemelo", 20, autor[3]);
-		libro[5] = new Libro("Los Pilares de la tierra", 20, autor[3]);
-		libro[6] = new Libro("En la boca del dragón", 20, autor[3]);
+	public static Libro[] variosLibros(Autor autor [], Libro libros[]) {
+		libros[0] = new Libro("La insoportable levedad del ser", 20, autor [0]);
+		libros[1] = new Libro("El señor de los anillos", 20, autor[1]);
+		libros[2] = new Libro("El perfume", 20, autor[2]);
+		libros[3] = new Libro("Trainspotting", 20, autor[4]);
+		libros[4] = new Libro("El tercer gemelo", 20, autor[3]);
+		libros[5] = new Libro("Los Pilares de la tierra", 20, autor[3]);
+		libros[6] = new Libro("En la boca del dragón", 20, autor[3]);
 		
 
-		return libro;
+		return libros;
 	}
 
 }

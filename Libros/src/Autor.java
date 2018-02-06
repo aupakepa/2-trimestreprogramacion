@@ -14,6 +14,13 @@ public class Autor {
 	private String email;
 	private char sexo;
 	private Fecha fechaNacimiento;
+	static Integer siguiente = 1;
+	public static Integer getSiguiente() {
+		return siguiente;
+	}
+	public static void setSiguiente(Integer siguiente) {
+		Autor.siguiente = siguiente;
+	}
 	@Override
 	public String toString() {
 		return "Autor [nombre=" + nombre + ", email=" + email + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento
@@ -48,5 +55,6 @@ public class Autor {
 		this.email = email;
 		this.sexo = sexo;
 		this.fechaNacimiento = fechaNacimiento;
+		siguiente++;
 	}
 }
