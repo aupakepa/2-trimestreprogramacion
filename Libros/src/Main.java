@@ -1,6 +1,6 @@
 import java.util.Arrays;
-import javax.swing.text.Utilities;
-
+import utilidades.Fecha;
+import utilidades.Leer;
 
 /**
  * 3) Crea el proyecto LibroUnAutor, que estará formado por las siguientes
@@ -67,22 +67,22 @@ public class Main {
 					if (libros[i] == null && i == libros.length - 1) {
 						libros = Arrays.copyOf(libros, libros.length + 10);
 					} else if (libros[i] == null) {
-						libros[i] = introducirLibros();
+						libros[i] = introducirLibros(autores,libros);
 						numero--;
 					}
 				}
 				break;
 			case 2:
 				do {
-					Leer.mensaje("1.buscar Libro");
-					Leer.mensaje("10. Salir");
+					Leer.mostrarEnPantalla("1.buscar Libro");
+					Leer.mostrarEnPantalla("10. Salir");
 					menu=Leer.pedirEntero("introduzca opcion 1 o 10");
 					switch (menu) {
 					case 1:
-						buscarlibro(libros);
+						buscarlibro(autores,libros);
 						break;
 					case 10:
-						Leer.mensaje("Fin de la busqueda");
+						Leer.mostrarEnPantalla("Fin de la busqueda");
 					default:
 						break;
 					}
@@ -94,10 +94,10 @@ public class Main {
 				
 				break;
 			case 4:
-					Leer.mensaje(Arrays.toString(libros));
+					Leer.mostrarEnPantalla(Arrays.toString(libros));
 				break;
 			case 5:
-				Leer.mensaje(Arrays.toString(autores));
+				Leer.mostrarEnPantalla(Arrays.toString(autores));
 				break;
 			case 6:
 				variosAutores(autores);
@@ -118,15 +118,15 @@ public class Main {
 
 	}
 
-	public static void buscarlibro(Libro[] libros) {
+	public static void buscarlibro(Autor autores[], Libro[] libros) {
 		String cadena = Leer.pedirCadena("Busca un libro");
 		for (int i = 0; (i < libros.length) && (libros[i] != null); i++) {
 			if (libros[i].getTitulo().indexOf(cadena) != -1) {
-			Leer.mensaje("hemos encontrado tu libro");
-			Leer.mensaje(libros[i].toString());
-			Leer.mensaje("modifica el libro");
+			Leer.mostrarEnPantalla("hemos encontrado tu libro");
+			Leer.mostrarEnPantalla(libros[i].toString());
+			Leer.mostrarEnPantalla("modifica el libro");
 			libros[i] = introducirLibros(autores,libros);
-			Leer.mensaje(libros[i].toString());
+			Leer.mostrarEnPantalla(libros[i].toString());
 			}
 		}
 	}
@@ -141,11 +141,11 @@ public class Main {
 		int idlibro= -1;
 		Autor autor[] = new Autor[5];
 		titulo = Leer.pedirCadena("introduce el titulo");
-		precio = Leer.pedirDecimal("introduce el precio");
-		Leer.mensaje(Arrays.toString(autor));
+		precio = Leer.pedirDouble("introduce el precio");
+		Leer.mostrarEnPantalla(Arrays.toString(autor));
 		int numero = Leer.pedirEntero("cuantos autores tiene el libro");
 		if (numero==1) {		
-			Leer.mensaje("Que autor tiene el libro?");
+			Leer.mostrarEnPantalla("Que autor tiene el libro?");
 			Leer.pedirEntero("introduce el Id del autor");
 			autor[0]= autores [idlibro];
 			libros[Libro.getContador()]=new Libro(titulo, precio, autor[0]);
