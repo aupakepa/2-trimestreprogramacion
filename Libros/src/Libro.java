@@ -20,6 +20,7 @@ private String titulo;
 private double precio;
 private Integer cantidad = 0;
 private Autor autor [] = new Autor[5];
+static Integer contador = 0;
 @Override
 public String toString() {
 	return "Libro [titulo=" + titulo + ", precio=" + precio + ", cantidad=" + cantidad + ", autor=" + Arrays.toString(autor) + "]"+"\n";
@@ -54,12 +55,20 @@ public Libro(String titulo, double precio, Autor autor[]) {
 	this.titulo = titulo;
 	this.precio = precio;
 	this.autor = autor;
+	contador++;
 	}
 public Libro(String titulo, double precio, Integer cantidad, Autor autor[]) {
 	this.titulo = titulo;
 	this.precio = precio;
 	this.cantidad = cantidad;
 	this.autor = autor;
+	contador++;
+}
+public static Integer getContador() {
+	return contador;
+}
+public static void setContador(Integer contador) {
+	Libro.contador = contador;
 }
 public Libro(String titulo, double precio, Autor autor) {
 	this.titulo = titulo;

@@ -1,3 +1,5 @@
+import utilidades.Fecha;
+
 /**Autor
 -nombre: String (no tiene valor por defecto)
 -email:  String (no tiene valor por defecto)
@@ -14,7 +16,7 @@ public class Autor {
 	private String email;
 	private char sexo;
 	private Fecha fechaNacimiento;
-	static Integer siguiente = 1;
+	static Integer siguiente = 0;
 	public static Integer getSiguiente() {
 		return siguiente;
 	}

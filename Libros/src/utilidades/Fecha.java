@@ -1,3 +1,4 @@
+package utilidades;
 
 public class Fecha {
 	private Integer dia;

@@ -1,4 +1,4 @@
-
+import utilidades.Leer;
 
 public class P2 {
 
@@ -7,7 +7,7 @@ public class P2 {
 	     String str = "esto es un ejemplo de como funciona split";
 	     Integer var=null;
 	     String regex;
-	     regex=Leer.pedirCadena("Expresión regular", null);
+	     regex=Leer.pedirCadena("Expresiï¿½n regular", null);
 	     if(regex.equals("")){
 	    	 regex=null;
 	     }

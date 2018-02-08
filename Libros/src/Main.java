@@ -1,4 +1,6 @@
 import java.util.Arrays;
+import javax.swing.text.Utilities;
+
 
 /**
  * 3) Crea el proyecto LibroUnAutor, que estará formado por las siguientes
@@ -45,7 +47,7 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Libro libros[] = new Libro[10];
-		Autor autor[] = new Autor[10];
+		Autor autores[] = new Autor[10];
 		int menu = -1;
 		do {
 			System.out.println("1- Crear libros.");
@@ -95,17 +97,17 @@ public class Main {
 					Leer.mensaje(Arrays.toString(libros));
 				break;
 			case 5:
-				Leer.mensaje(Arrays.toString(autor));
+				Leer.mensaje(Arrays.toString(autores));
 				break;
 			case 6:
-				variosAutores(autor);
-				variosLibros(autor, libros);
+				variosAutores(autores);
+				variosLibros(autores, libros);
 				break;
 			case 0:
 
 				break;
 			case 7:
-				 
+				 introducirAutor(autores);
 				
 				break;
 
@@ -123,7 +125,7 @@ public class Main {
 			Leer.mensaje("hemos encontrado tu libro");
 			Leer.mensaje(libros[i].toString());
 			Leer.mensaje("modifica el libro");
-			libros[i] = introducirLibros();
+			libros[i] = introducirLibros(autores,libros);
 			Leer.mensaje(libros[i].toString());
 			}
 		}
@@ -133,22 +135,25 @@ public class Main {
 	 * @param autor
 	 * @param libros
 	 */
-	public static Libro introducirLibros() {
+	public static Libro introducirLibros(Autor autores [],Libro libros[]) {
 		String titulo;
 		double precio;
+		int idlibro= -1;
 		Autor autor[] = new Autor[5];
 		titulo = Leer.pedirCadena("introduce el titulo");
 		precio = Leer.pedirDecimal("introduce el precio");
-		
+		Leer.mensaje(Arrays.toString(autor));
 		int numero = Leer.pedirEntero("cuantos autores tiene el libro");
-		if (condition) {
-			
+		if (numero==1) {		
+			Leer.mensaje("Que autor tiene el libro?");
+			Leer.pedirEntero("introduce el Id del autor");
+			autor[0]= autores [idlibro];
+			libros[Libro.getContador()]=new Libro(titulo, precio, autor[0]);
 		}
 		Libro libro = new Libro(titulo, precio, autor);
 		return libro;
 	}
-	public
-	public static Autor[] introducirAutor(Autor autor[]){
+	public static Autor[] introducirAutor (Autor autor[]){
 		String nombre;
 		String email;
 		char sexo;
@@ -163,7 +168,6 @@ public class Main {
 				autor[i]= new Autor(nombre, email, sexo, fechaNacimiento);
 				resultado = true;
 			}
-			
 		}
 		return autor;
 	}
