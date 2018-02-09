@@ -61,18 +61,18 @@ public class Main {
 			System.out.println("0- Salir");
 			menu = Leer.pedirEntero("introduzca una opcion de menu");
 			switch (menu) {
-			case 1:
+			case 1://1- Crear libros.
 				int numero = Leer.pedirEntero("Cuantos libros quieres crear");
 				for (int i = 0; i <= libros.length && numero != 0; i++) {
 					if (libros[i] == null && i == libros.length - 1) {
 						libros = Arrays.copyOf(libros, libros.length + 10);
 					} else if (libros[i] == null) {
-						libros[i] = introducirLibros(autores,libros);
+						libros = introducirLibros(autores,libros);
 						numero--;
 					}
 				}
 				break;
-			case 2:
+			case 2://2- Modificar libro
 				do {
 					Leer.mostrarEnPantalla("1.buscar Libro");
 					Leer.mostrarEnPantalla("10. Salir");
@@ -90,23 +90,33 @@ public class Main {
 				} while (menu!=10);
 				
 				break;
-			case 3:
+			case 3://3- Modificar autor
 				
 				break;
-			case 4:
+			case 4://4- Listado de libros
 					Leer.mostrarEnPantalla(Arrays.toString(libros));
 				break;
-			case 5:
+			case 5://5- Listado de autores
 				Leer.mostrarEnPantalla(Arrays.toString(autores));
 				break;
-			case 6:
+			case 6://6- Crear Varios Libros y Autores"
+				for (int i = 0; i<autores.length ; i++) {
+					if (autores[i] != null && i > autores.length/2) {
+						autores = Arrays.copyOf(autores,autores.length+10);
+					}
+				}
+				for (int i = 0; i < libros.length ; i++) {
+					if (libros[i] != null && i > libros.length/2) {
+						libros = Arrays.copyOf(libros,libros.length+10);
+					}
+				}
 				variosAutores(autores);
 				variosLibros(autores, libros);
 				break;
-			case 0:
+			case 0://salir
 
 				break;
-			case 7:
+			case 7://"7- Introducir Autor"
 				 introducirAutor(autores);
 				
 				break;
@@ -123,10 +133,10 @@ public class Main {
 		for (int i = 0; (i < libros.length) && (libros[i] != null); i++) {
 			if (libros[i].getTitulo().indexOf(cadena) != -1) {
 			Leer.mostrarEnPantalla("hemos encontrado tu libro");
-			Leer.mostrarEnPantalla(libros[i].toString());
+			Leer.mostrarEnPantalla(i+libros[i].toString());
 			Leer.mostrarEnPantalla("modifica el libro");
-			libros[i] = introducirLibros(autores,libros);
-			Leer.mostrarEnPantalla(libros[i].toString());
+			libros = introducirLibros(autores,libros);
+			Leer.mostrarEnPantalla(i+libros[i].toString());
 			}
 		}
 	}
@@ -135,23 +145,23 @@ public class Main {
 	 * @param autor
 	 * @param libros
 	 */
-	public static Libro introducirLibros(Autor autores [],Libro libros[]) {
+	public static Libro[] introducirLibros(Autor autores [],Libro libros[]) {
 		String titulo;
-		double precio;
-		int idlibro= -1;
-		Autor autor[] = new Autor[5];
+		int idlibro;
+		int numero;
 		titulo = Leer.pedirCadena("introduce el titulo");
-		precio = Leer.pedirDouble("introduce el precio");
-		Leer.mostrarEnPantalla(Arrays.toString(autor));
-		int numero = Leer.pedirEntero("cuantos autores tiene el libro");
-		if (numero==1) {		
-			Leer.mostrarEnPantalla("Que autor tiene el libro?");
-			Leer.pedirEntero("introduce el Id del autor");
-			autor[0]= autores [idlibro];
-			libros[Libro.getContador()]=new Libro(titulo, precio, autor[0]);
+		numero = Leer.pedirEntero("cuantos autores tiene el libro");
+		Autor autor[] = new Autor[numero];
+		for (int i = 0; i < Autor.getSiguiente()-1; i++) {
+				System.out.print(i+".-"+autores[i].getNombre());
 		}
-		Libro libro = new Libro(titulo, precio, autor);
-		return libro;
+		
+		for (int i = 0; i < numero; i++) {
+			idlibro=Leer.pedirEntero("introduce el Id del autor");
+			autor[i] = autores[idlibro];
+		}
+		libros[Libro.getContador()]=new Libro(titulo, autor);
+			return libros;
 	}
 	public static Autor[] introducirAutor (Autor autor[]){
 		String nombre;
@@ -204,25 +214,26 @@ public class Main {
 		return fechaNacimiento;
 	}
 
-	public static Autor[] variosAutores(Autor autor[]) {		
-		autor[0] = new Autor("Millan kundera", "milan@fontecabras.es", 'M', new Fecha(24,7,1977));
-		autor[1] = new Autor("J.R.R Tolkien", "JRR@fontecabras.es", 'F', new Fecha(23,8,1973) );
-		autor[2] = new Autor("Patrick Süskind", "patrick@fontecabras.es", 'M', new Fecha(24,1,1987));
-		autor[3] = new Autor("Ken Follett", "patrick@fontecabras.es", 'M', new Fecha(01,3,1957));
-		autor[4] = new Autor("Irvine Welsh", "patrick@fontecabras.es", 'M', new Fecha(29,2,1965));
+	public static Autor[] variosAutores(Autor autor[]) {	
+		
+		autor[Autor.getSiguiente()] = new Autor("Millan kundera", "milan@fontecabras.es", 'M', new Fecha(24,7,1977));
+		autor[Autor.getSiguiente()] = new Autor("J.R.R Tolkien", "JRR@fontecabras.es", 'F', new Fecha(23,8,1973) );
+		autor[Autor.getSiguiente()] = new Autor("Patrick Süskind", "patrick@fontecabras.es", 'M', new Fecha(24,1,1987));
+		autor[Autor.getSiguiente()] = new Autor("Ken Follett", "patrick@fontecabras.es", 'M', new Fecha(01,3,1957));
+		autor[Autor.getSiguiente()] = new Autor("Irvine Welsh", "patrick@fontecabras.es", 'M', new Fecha(29,2,1965));
 
 
 		return autor;
 	}
 
 	public static Libro[] variosLibros(Autor autor [], Libro libros[]) {
-		libros[0] = new Libro("La insoportable levedad del ser", 20, autor [0]);
-		libros[1] = new Libro("El señor de los anillos", 20, autor[1]);
-		libros[2] = new Libro("El perfume", 20, autor[2]);
-		libros[3] = new Libro("Trainspotting", 20, autor[4]);
-		libros[4] = new Libro("El tercer gemelo", 20, autor[3]);
-		libros[5] = new Libro("Los Pilares de la tierra", 20, autor[3]);
-		libros[6] = new Libro("En la boca del dragón", 20, autor[3]);
+		libros[Libro.getContador()] = new Libro("La insoportable levedad del ser", 20, autor [0]);
+		libros[Libro.getContador()] = new Libro("El señor de los anillos", 20, autor[1]);
+		libros[Libro.getContador()] = new Libro("El perfume", 20, autor[2]);
+		libros[Libro.getContador()] = new Libro("Trainspotting", 20, autor[4]);
+		libros[Libro.getContador()] = new Libro("El tercer gemelo", 20, autor[3]);
+		libros[Libro.getContador()] = new Libro("Los Pilares de la tierra", 20, autor[3]);
+		libros[Libro.getContador()] = new Libro("En la boca del dragón", 20, autor[3]);
 		
 
 		return libros;

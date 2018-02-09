@@ -18,12 +18,12 @@ import java.util.Arrays;
 public class Libro {
 private String titulo;
 private double precio;
-private Integer cantidad = 0;
-private Autor autor [] = new Autor[5];
+private Integer cantidad;
+private Autor autor [];
 static Integer contador = 0;
 @Override
 public String toString() {
-	return "Libro [titulo=" + titulo + ", precio=" + precio + ", cantidad=" + cantidad + ", autor=" + Arrays.toString(autor) + "]"+"\n";
+	return "Libro"+ contador+"[titulo=" + titulo + ", precio=" + precio + ", cantidad=" + cantidad + ", autor=" + Arrays.toString(autor) + "]"+"\n";
 }
 public String getTitulo() {
 	return titulo;
@@ -50,17 +50,11 @@ public void setAutor(Autor autor[]) {
 		this.autor = autor;
 	
 }
-
-public Libro(String titulo, double precio, Autor autor[]) {
+public Libro(String titulo, Autor autor[], Integer numero) {
+	autor = new Autor[numero];
 	this.titulo = titulo;
-	this.precio = precio;
-	this.autor = autor;
-	contador++;
-	}
-public Libro(String titulo, double precio, Integer cantidad, Autor autor[]) {
-	this.titulo = titulo;
-	this.precio = precio;
-	this.cantidad = cantidad;
+	this.precio = 0;
+	this.cantidad = 1;
 	this.autor = autor;
 	contador++;
 }
@@ -70,9 +64,5 @@ public static Integer getContador() {
 public static void setContador(Integer contador) {
 	Libro.contador = contador;
 }
-public Libro(String titulo, double precio, Autor autor) {
-	this.titulo = titulo;
-	this.precio = precio;
-	this.autor[0] = autor;
-	}
+
 }
