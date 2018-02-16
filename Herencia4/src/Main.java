@@ -23,13 +23,37 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int menu = Leer.pedirEntero("introduzca una opcion de menu","xpresion regular");
+		double sueldoBase;
+		double plus;
+		int menu;
 		do {
 		Leer.mostrarEnPantalla("1. Modificar el sueldo base de todos los empleados.");
 		Leer.mostrarEnPantalla("2. Modificar el plus de todos los jefes. ");
 		Leer.mostrarEnPantalla("3. Visualizar los datos de todos los empleados.");
 		Leer.mostrarEnPantalla("0. Salir.");
 		Leer.mostrarEnPantalla("ELIJA UNA OPCIÓN:");
+		menu=Leer.pedirEntero("introduzca la opcion", "[0-3]");
+		
+		switch (menu) {
+		
+		case 1:
+			sueldoBase = Leer.pedirDouble("introzca el nuevo Salario Base");
+			Empleado.setSueldoBase(sueldoBase);
+			
+			break;
+		case 2:
+			plus = Leer.pedirDouble("introzca el nuevo Salario Base");
+			Jefe.setPlus(plus);
+			break;
+		case 3:
+			
+			break;
+		case 4:
+			
+			break;
+		default:
+			break;
+		}
 		} while (menu!=0);
 
 	}

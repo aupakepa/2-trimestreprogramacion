@@ -22,19 +22,9 @@ final String NomEmp = "Electrica, S.A";
 private String nombre;
 private int edad;
 private double porIncremento;
-static double sueldoBase = 1000;
-private double sueldo;
-public Empleado(String nombre, int edad, double porIncremento, double sueldo) {
-	super();
-	this.nombre = nombre;
-	this.edad = edad;
-	this.porIncremento = porIncremento;
-	this.sueldo = sueldo;
-}
-@Override
-public String toString() {
-	return "Empleado [NomEmp=" + NomEmp + ", nombre=" + nombre + ", edad=" + edad + ", porIncremento=" + porIncremento
-			+ ", sueldo=" + sueldo + "]";
+private static double sueldoBase;
+public static void setSueldoBase(double sueldoBase) {
+	Empleado.sueldoBase = sueldoBase;
 }
 public String getNombre() {
 	return nombre;
@@ -54,19 +44,24 @@ public double getPorIncremento() {
 public void setPorIncremento(double porIncremento) {
 	this.porIncremento = porIncremento;
 }
-public static double getSueldoBase() {
+public double getSueldoBase() {
 	return sueldoBase;
-}
-public static void setSueldoBase(double sueldoBase) {
-	Empleado.sueldoBase = sueldoBase;
-}
-public double getSueldo() {
-	return sueldo;
-}
-public void setSueldo(double sueldo) {
-	this.sueldo = sueldo;
 }
 public String getNomEmp() {
 	return NomEmp;
 }
+@Override
+public String toString() {
+	return "Empleado [NomEmp=" + NomEmp + ", nombre=" + nombre + ", edad=" + edad + ", porIncremento=" + porIncremento
+			+ ", sueldo=" + sueldoBase*this.porIncremento + "]";
+}
+public Empleado(String nombre, int edad, double porIncremento) {
+	super();
+	this.nombre = nombre;
+	this.edad = edad;
+	this.porIncremento = porIncremento;
+}
+
+
+
 }
