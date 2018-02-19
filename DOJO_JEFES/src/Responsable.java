@@ -4,10 +4,10 @@ public class Responsable extends Empleado {
 	private Float bono;
 	private String departamento;
 	private int personasACargo;
-	private static Float plusResponsabilidad;
+	private static Float plusResponsabilidad=500.f;
 
-	public Float calculoNomina() {
-		float nomina = super.calculoNomina()+this.bono+plusResponsabilidad*personasACargo;
+	public Float calculoNomina(Fecha sysdate) {
+		float nomina = super.calculoNomina(sysdate)+this.bono+plusResponsabilidad*personasACargo;
 		return nomina;
 		
 	}
@@ -47,7 +47,7 @@ public class Responsable extends Empleado {
 	@Override
 	public String toString() {
 		return "Responsable [bono=" + bono + ", departamento=" + departamento + ", personasACargo=" + personasACargo
-				+ "]";
+				+ "]"+ "\n";
 	}
 
 	public Responsable(String nombre, Fecha fecha_nacimiento, Fecha fechaIngreso, Float bono, String departamento) {

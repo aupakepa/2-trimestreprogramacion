@@ -5,7 +5,7 @@ public class Empleado {
 	private Fecha fecha_nacimiento;
 	private Integer numero_empleado;
 	private static int siguiente =0;
-	private static Float salario_base;
+	private static Float salario_base=(float) 735;
 	private Fecha fechaIngreso;
 
 	public Empleado(String nombre, Fecha fecha_nacimiento, Fecha fechaIngreso) {
@@ -21,7 +21,7 @@ public class Empleado {
 		
 	}*/
 
-	public Float calculoNomina() {
+	public Float calculoNomina(Fecha sysdate) {
 		Float resultado = getSalario_base();
 		return resultado;
 	}
@@ -58,12 +58,12 @@ public class Empleado {
 		Empleado.siguiente = siguiente;
 	}
 
-	public Float getSalario_base() {
+	public static Float getSalario_base() {
 		return salario_base;
 	}
 
-	public void setSalario_base(Float salario_base) {
-		this.salario_base = salario_base;
+	public static void setSalario_base(Float salario_base) {
+		Empleado.salario_base =  salario_base;
 	}
 
 	public Fecha getFechaIngreso() {
@@ -76,7 +76,7 @@ public class Empleado {
 
 	@Override
 	public String toString() {
-		return "Empleado [nombre=" + nombre + ", numero_empleado=" + numero_empleado + ", salario_base=" + salario_base
+		return "Empleado [nombre=" + nombre + ", numero_empleado=" + numero_empleado + ", salario_base=" + salario_base 
 				+ "]";
 	}
 

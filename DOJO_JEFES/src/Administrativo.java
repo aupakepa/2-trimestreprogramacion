@@ -1,7 +1,7 @@
 import utilidades.Fecha;
 
 public class Administrativo extends Empleado {
-	private static Float plusAntiguedad;
+	private static Float plusAntiguedad=50.f;
 	private String departamento;
 	private Responsable jefe;
 
@@ -14,8 +14,8 @@ public class Administrativo extends Empleado {
 	}
 
 	public Float calculoNomina(Fecha sysdate) {
-		int antiguedad =  (int)((super.getFecha_nacimiento().difFechas(sysdate))/365);
-		Float resultado = super.calculoNomina() + antiguedad*plusAntiguedad;
+		int antiguedad =  (int)((super.getFechaIngreso().difFechas(sysdate))/365);
+		Float resultado = super.calculoNomina(sysdate) + antiguedad*plusAntiguedad;
 		return resultado;
 	}
 
@@ -45,7 +45,7 @@ public class Administrativo extends Empleado {
 
 	@Override
 	public String toString() {
-		return "Administrativo [departamento=" + departamento + ", jefe=" + jefe + "]";
+		return "Administrativo [departamento=" + departamento + ", jefe=" + jefe + "]"+ "\n";
 	}
 
 

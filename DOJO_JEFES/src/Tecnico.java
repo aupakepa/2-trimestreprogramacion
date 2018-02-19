@@ -5,19 +5,19 @@ public class Tecnico extends Empleado {
 	private Float plusEspecialidad;
 	private Responsable jefe;
 
-	public Float calculoNomina() {
-		Float nomina= super.calculoNomina()+plusEspecialidad;
+	public Float calculoNomina(Fecha sysdate) {
+		Float nomina= super.calculoNomina(sysdate)+plusEspecialidad;
 		return nomina;
 	}
 
 	
 	public Tecnico(String nombre, Fecha fecha_nacimiento, Fecha fechaIngreso, String especialidad,
-			Float plusEspecialidad, Responsable vector) {
+			Float plusEspecialidad, Responsable responsable) {
 		super(nombre, fecha_nacimiento, fechaIngreso);
 		this.especialidad = especialidad;
 		this.plusEspecialidad = plusEspecialidad;
-		this.jefe = vector;
-		vector.setPersonasACargo(vector.getPersonasACargo()+1);
+		this.jefe = responsable;
+		responsable.setPersonasACargo(responsable.getPersonasACargo()+1);
 	}
 
 
@@ -48,7 +48,7 @@ public class Tecnico extends Empleado {
 	@Override
 	public String toString() {
 		return "Tecnico [especialidad=" + especialidad + ", plusEspecialidad=" + plusEspecialidad + ", jefe=" + jefe
-				+ "]";
+				+ "]"+ "\n";
 	}
 
 }
