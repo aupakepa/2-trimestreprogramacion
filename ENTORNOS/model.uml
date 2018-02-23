@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_lfq5oBikEeiyYvrRU1RIIA" name="Entornos3">
+  <packagedElement xmi:type="uml:Class" xmi:id="_bZzncBilEeiyYvrRU1RIIA" name="">
+    <ownedAttribute xmi:id="_gCk3cBinEeiyYvrRU1RIIA" name="dni">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_KA1CEBioEeiyYvrRU1RIIA" name="nombre">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_OwxjABioEeiyYvrRU1RIIA" name="telefono">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_ZIXo8BioEeiyYvrRU1RIIA" name="direccion">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Class" xmi:id="_11FzcBilEeiyYvrRU1RIIA" name="reservas"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_4YEtkBilEeiyYvrRU1RIIA" name="Coches"/>
+  <packagedElement xmi:type="uml:Class" xmi:id="_6fbboBilEeiyYvrRU1RIIA" name="Agencia"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_OApYgBimEeiyYvrRU1RIIA" memberEnd="_OApYgRimEeiyYvrRU1RIIA _OApYhBimEeiyYvrRU1RIIA" navigableOwnedEnd="_OApYgRimEeiyYvrRU1RIIA _OApYhBimEeiyYvrRU1RIIA">
+    <name xsi:nil="true"/>
+    <ownedEnd xmi:id="_OApYgRimEeiyYvrRU1RIIA" name="clientes" type="_bZzncBilEeiyYvrRU1RIIA" association="_OApYgBimEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OApYghimEeiyYvrRU1RIIA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OApYgximEeiyYvrRU1RIIA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_OApYhBimEeiyYvrRU1RIIA" name="reservass" type="_11FzcBilEeiyYvrRU1RIIA" association="_OApYgBimEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_OApYhRimEeiyYvrRU1RIIA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_OApYhhimEeiyYvrRU1RIIA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_iZZaUBimEeiyYvrRU1RIIA" name="formada" memberEnd="_iZZaURimEeiyYvrRU1RIIA _iZZaVBimEeiyYvrRU1RIIA" navigableOwnedEnd="_iZZaURimEeiyYvrRU1RIIA _iZZaVBimEeiyYvrRU1RIIA">
+    <ownedEnd xmi:id="_iZZaURimEeiyYvrRU1RIIA" name="reservass" type="_11FzcBilEeiyYvrRU1RIIA" association="_iZZaUBimEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iZZaUhimEeiyYvrRU1RIIA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iZZaUximEeiyYvrRU1RIIA" value="1"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_iZZaVBimEeiyYvrRU1RIIA" name="cochess" type="_4YEtkBilEeiyYvrRU1RIIA" association="_iZZaUBimEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iZZaVRimEeiyYvrRU1RIIA" value="1"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iZZaVhimEeiyYvrRU1RIIA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Association" xmi:id="_RI67kBinEeiyYvrRU1RIIA" memberEnd="_RI67kRinEeiyYvrRU1RIIA _RI67lBinEeiyYvrRU1RIIA" navigableOwnedEnd="_RI67kRinEeiyYvrRU1RIIA _RI67lBinEeiyYvrRU1RIIA">
+    <ownedEnd xmi:id="_RI67kRinEeiyYvrRU1RIIA" name="agencias" type="_6fbboBilEeiyYvrRU1RIIA" association="_RI67kBinEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RI67khinEeiyYvrRU1RIIA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RI67kxinEeiyYvrRU1RIIA" value="*"/>
+    </ownedEnd>
+    <ownedEnd xmi:id="_RI67lBinEeiyYvrRU1RIIA" name="clientess" type="_bZzncBilEeiyYvrRU1RIIA" association="_RI67kBinEeiyYvrRU1RIIA">
+      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_RI67lRinEeiyYvrRU1RIIA"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_RI67lhinEeiyYvrRU1RIIA" value="*"/>
+    </ownedEnd>
+  </packagedElement>
+</uml:Model>
