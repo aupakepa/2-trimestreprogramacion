@@ -2,22 +2,22 @@ import java.util.Arrays;
 
 import utilidades.Fecha;
 
-public class Alumnos {
+public class Alumno {
 
 	private Asignatura asignaturas[] = new Asignatura[10];
 	private int notas[];
 	private String nombre;
-	private Fecha fecha;
+	private Fecha fechanacimiento;
 
-	public Alumnos(String nombre, Fecha fecha) {
+	public Alumno(String nombre, Fecha fecha) {
 		super();
 		this.nombre = nombre;
-		this.fecha = fecha;
+		this.fechanacimiento = fecha;
 	}
 
-	public int edad(Fecha fecha_actual) {
+	private int edad(Fecha fecha_actual) {
 		int edad = 0;
-		edad = fecha_actual.difFechas(fecha) / 365;
+		edad = fecha_actual.difFechas(fechanacimiento) / 365;
 		return edad;
 	}
 
@@ -80,16 +80,13 @@ public class Alumnos {
 
 	public void boletin(Fecha fecha_actual) {
 		System.out.println(this.nombre);
-		String asign="";
-		for (int i = 0; i < asignaturas.length || asignaturas[i]!=null; i++) {
-			asign="nombre: " + this.nombre + "\n" + "edad: " + this.edad(fecha_actual +  );
-		}
-		System.out.println();
+		String asign="nombre: " + this.nombre +"edad: " + this.edad(fecha_actual)+ "\n";
 		for (int i = 0; i < asignaturas.length; i++) {
-			System.out.print(notas[i]);
+			if (asignaturas[i]!=null) {
+				asign= asign + asignaturas[i].getNombre()+" nota= " + notas[i] ;
+			}
 		}
 	}
-
 	public Asignatura[] getAsignaturas() {
 		return asignaturas;
 	}
@@ -114,17 +111,17 @@ public class Alumnos {
 		this.nombre = nombre;
 	}
 
-	public Fecha getFecha() {
-		return fecha;
+	public Fecha getFechanacimiento() {
+		return fechanacimiento;
 	}
 
 	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
+		this.fechanacimiento = fecha;
 	}
 
 	@Override
 	public String toString() {
 		return "Alumnos [asignaturas=" + Arrays.toString(asignaturas) + ", notas=" + Arrays.toString(notas)
-				+ ", nombre=" + nombre + ", fecha=" + fecha + "]";
+				+ ", nombre=" + nombre + ", fecha=" + fechanacimiento + "]";
 	}
 }
